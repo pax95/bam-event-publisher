@@ -42,7 +42,7 @@ public class TestClient {
                    DifferentStreamDefinitionAlreadyDefinedException {
 
         TestClient testClient = new TestClient();
-        testClient.testSendingEvent();
+        testClient.testSendingEvent(); 
     }
 
 
