@@ -15,7 +15,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package org.wso2.databridge.publisher;
+package dk.dr.drip.event.publisher;
 
 import java.io.File;
 import java.net.MalformedURLException;
