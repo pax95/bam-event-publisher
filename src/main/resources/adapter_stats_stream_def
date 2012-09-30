@@ -1,0 +1,22 @@
+{ "description" : "Adapter statistics",
+  "metaData" : [ { "name" : "adapter",
+        "type" : "STRING"
+      }
+    ],
+  "name" : "adapter_service_data_publisher",
+  "nickName" : "AdapterStatistics",
+  "payloadData" : [ { "name" : "adapter",
+        "type" : "STRING"
+      },
+      { "name" : "messageid",
+        "type" : "STRING"
+      },
+      { "name" : "sizeInBytes",
+        "type" : "LONG"  
+      },
+      { "name" : "timestamp",
+        "type" : "LONG"
+      }
+    ],
+  "version" : "1.0.0"
+}
