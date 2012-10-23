@@ -20,7 +20,6 @@ package dk.dr.drip.event.publisher;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Calendar;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,20 +54,17 @@ public class TestClient {
 
 		// according to the convention the authentication port will be 7611+100=
 		// 7711 and its host will be the same
-		DataPublisher dataPublisher = new DataPublisher("tcp://localhost:7611", "admin", "admin");
+		DataPublisher dataPublisher = new DataPublisher("tcp://appldivudv01:7611", "admin", "admin");
 		String stream = dataPublisher.findStream("adapter_service_data_publisher", "1.0.0");
 
 		log.info("1st stream defined: " + stream);
 		String adapter = "dalet-nnp-in";
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.HOUR_OF_DAY, -12);
-		Random rand = new Random();
-		int min = 0, max = 32000;
-		for (int i = 0; i < 1000; i++) {
-			cal.add(Calendar.MINUTE, 1);
+		cal.add(Calendar.MONTH, -1);
+		for (int i = 0; i < 100; i++) {
+			cal.add(Calendar.HOUR_OF_DAY, 1);
 			log.info("published event dage " + cal.getTime());
-			int randomNum = rand.nextInt(max - min + 1) + min;
-			Object[] payload = DataBuilder.buildPayloadArray(adapter, null, cal.getTime().getTime(), randomNum);
+			Object[] payload = DataBuilder.buildPayloadArray(adapter, null, cal.getTime().getTime(), 32000);
 			dataPublisher.publish(stream, System.currentTimeMillis(), new Object[] { "dalet-nnp-in" }, null, payload);
 		}
 
