@@ -54,7 +54,7 @@ public class TestClient {
 
 		// according to the convention the authentication port will be 7611+100=
 		// 7711 and its host will be the same
-		DataPublisher dataPublisher = new DataPublisher("tcp://localhost:7611", "admin", "admin");
+		DataPublisher dataPublisher = new DataPublisher("tcp://appldivudv01:7611", "admin", "admin");
 		String stream = dataPublisher.findStream("adapter_service_data_publisher", "1.0.0");
 
 		log.info("1st stream defined: " + stream);
