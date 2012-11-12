@@ -54,7 +54,7 @@ public class TestClient {
 
 		// according to the convention the authentication port will be 7611+100=
 		// 7711 and its host will be the same
-		DataPublisher dataPublisher = new DataPublisher("tcp://appldivudv01:7611", "admin", "admin");
+		DataPublisher dataPublisher = new DataPublisher("tcp://bamtst01:7611", "admin", "admin");
 		String stream = dataPublisher.findStream("adapter_service_data_publisher", "1.0.0");
 
 		log.info("1st stream defined: " + stream);
@@ -64,7 +64,7 @@ public class TestClient {
 		for (int i = 0; i < 100; i++) {
 			cal.add(Calendar.HOUR_OF_DAY, 1);
 			log.info("published event dage " + cal.getTime());
-			Object[] payload = DataBuilder.buildPayloadArray(adapter, null, cal.getTime().getTime(), 32000);
+			Object[] payload = DataBuilder.buildPayloadArray(adapter, "test12", cal.getTime().getTime(), 32000);
 			dataPublisher.publish(stream, System.currentTimeMillis(), new Object[] { "dalet-nnp-in" }, null, payload);
 		}
 

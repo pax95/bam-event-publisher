@@ -7,9 +7,9 @@ public class BamPublisherTest {
 	@Test
 	public void testBamPublisher() {
 		BamPublisher bamPublisher = new BamPublisher();
-		bamPublisher.setHost("localhost:3333");
-		bamPublisher.setPassword("bla");
-		bamPublisher.setUserName("user");
+		bamPublisher.setHost("bamtst01:7611");
+		bamPublisher.setPassword("admin");
+		bamPublisher.setUserName("admin");
 		bamPublisher.publish("test", System.currentTimeMillis(), "123", 12000);
 	}
 

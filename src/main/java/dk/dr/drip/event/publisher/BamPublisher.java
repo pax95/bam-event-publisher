@@ -1,5 +1,6 @@
 package dk.dr.drip.event.publisher;
 
+import java.io.File;
 import java.net.MalformedURLException;
 
 import javax.annotation.PreDestroy;
@@ -37,9 +38,7 @@ public class BamPublisher {
 
 	private void connectIfNecessary() {
 		if (!loggedIn) {
-			if (log.isDebugEnabled()) {
-				log.debug("Not connected/logged in, connecting to: {}", host);
-			}
+			log.debug("Not connected/logged in, connecting to: {}", host);
 			loggedIn = connect();
 			if (loggedIn) {
 				log.info("Connected and logged in to: " + host);
@@ -50,7 +49,7 @@ public class BamPublisher {
 	private boolean connect() {
 		boolean connected = false;
 		int attempt = 0;
-
+		setTrustStoreParams();
 		while (!connected) {
 			try {
 				if (log.isTraceEnabled() && attempt > 0) {
@@ -81,6 +80,17 @@ public class BamPublisher {
 			}
 		}
 		return true;
+	}
+
+	private void setTrustStoreParams() {
+		File filePath = new File("src/main/resources");
+		if (!filePath.exists()) {
+			filePath = new File("resources");
+		}
+		String trustStore = filePath.getAbsolutePath();
+		System.setProperty("javax.net.ssl.trustStore", trustStore + "/client-truststore.jks");
+		System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");
+
 	}
 
 	@PreDestroy
